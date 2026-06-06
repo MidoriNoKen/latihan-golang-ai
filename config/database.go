@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/MidoriNoKen/latihan-golang-ai/domain"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -48,4 +49,12 @@ func InitDB() {
 	}
 
 	log.Println("Database connection established successfully.")
+
+	// Run database migrations
+	log.Println("Running database migrations...")
+	if err := DB.AutoMigrate(&domain.User{}); err != nil {
+		log.Printf("Warning: Database migration failed: %v", err)
+	} else {
+		log.Println("Database migration completed successfully.")
+	}
 }
