@@ -6,9 +6,15 @@ import (
 
 	"github.com/MidoriNoKen/latihan-golang-ai/config"
 	"github.com/MidoriNoKen/latihan-golang-ai/routes"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	// Load .env file if it exists
+	if err := godotenv.Load(); err != nil {
+		log.Println("Warning: No .env file found. Using system environment variables.")
+	}
+
 	// 1. Initialize Database Connection
 	config.InitDB()
 
